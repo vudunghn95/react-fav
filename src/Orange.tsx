@@ -11,7 +11,7 @@ const debounce = (fn: () => void, delay: number) => {
   };
 };
 
-function App() {
+function Orange() {
   const [progress, setProgress] = useState(0);
   const [count, setCount] = useState(0);
   const pendingRef = useRef(0);
@@ -207,4 +207,4 @@ function App() {
   );
 }
 
-export default App;
+export default Orange;
