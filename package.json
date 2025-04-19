@@ -1,6 +1,6 @@
 {
   "name": "react-fav",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "type": "module",
   "description": "A cute animated favorite button for React 🍊",
@@ -8,17 +8,31 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "react-fav.css"
+    "dist"
   ],
   "scripts": {
-    "build": "vite build && tsc --project tsconfig.app.json"
+    "dev": "vite",
+    "build": "vite build && tsc --project tsconfig.app.json",
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "peerDependencies": {
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
   },
   "dependencies": {
+    "@upstash/redis": "^1.34.8",
     "gsap": "^3.12.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "typescript": "~5.7.2",
+    "vite": "^6.3.1"
   }
 }

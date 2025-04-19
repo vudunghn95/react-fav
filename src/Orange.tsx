@@ -12,6 +12,8 @@ const debounce = (fn: () => void, delay: number) => {
 };
 
 function Orange() {
+  const API_BASE = "https://react-fav.vercel.app/api/favorites";
+
   const [progress, setProgress] = useState(0);
   const [count, setCount] = useState(0);
   const pendingRef = useRef(0);
@@ -34,7 +36,7 @@ function Orange() {
     debounce(() => {
       const increment = pendingRef.current;
       if (increment > 0) {
-        fetch(`/api/favorites/${domain}`, {
+        fetch(`${API_BASE}/${domain}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ increment }),
@@ -49,7 +51,7 @@ function Orange() {
 
   useEffect(() => {
     if (!domain) return;
-    fetch(`/api/favorites/${domain}`)
+    fetch(`${API_BASE}/${domain}`)
       .then((res) => res.json())
       .then((data) => {
         setCount(data.count || 0);
