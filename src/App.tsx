@@ -1,13 +1,60 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import gsap from "gsap";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
+
+const debounce = (fn: () => void, delay: number) => {
+  let timer: NodeJS.Timeout;
+  return () => {
+    clearTimeout(timer);
+    timer = setTimeout(fn, delay);
+  };
+};
 
 function App() {
   const [progress, setProgress] = useState(0);
+  const [count, setCount] = useState(0);
+  const pendingRef = useRef(0);
+
+  const domain =
+    typeof window !== "undefined"
+      ? window.location.hostname.replace(/^www\./, "")
+      : "";
 
   const handleClick = () => {
-    setProgress((prev) => (prev >= 63 ? 63 : prev + 7));
+    if (progress < 63) {
+      setProgress((prev) => prev + 7);
+      setCount((c) => c + 1);
+      pendingRef.current += 1;
+      debounceSend();
+    }
   };
+
+  const debounceSend = useRef(
+    debounce(() => {
+      const increment = pendingRef.current;
+      if (increment > 0) {
+        fetch(`/api/favorites/${domain}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ increment }),
+        })
+          .then(() => {
+            pendingRef.current = 0; // clear after sending
+          })
+          .catch(console.error);
+      }
+    }, 1000)
+  ).current;
+
+  useEffect(() => {
+    if (!domain) return;
+    fetch(`/api/favorites/${domain}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCount(data.count || 0);
+      });
+  }, [domain]);
 
   useEffect(() => {
     gsap.to(".fill-rect", {
@@ -21,12 +68,11 @@ function App() {
       ease: "none",
       attr: {
         d: "M15.52 48C22.5 56.5 35 56 41.48 48",
-        // d: "M14 48C22.5 55.5 36 54 43 48",
       },
       yoyo: true,
       repeat: 1,
       onComplete: () => {
-        gsap.set("mouth", { attr: { d: "M16 48C22.5 55.5 36 54 41 48" } });
+        gsap.set(".mouth", { attr: { d: "M16 48C22.5 55.5 36 54 41 48" } });
       },
     });
 
@@ -84,13 +130,15 @@ function App() {
   }, [progress]);
 
   return (
-    <div className="orange" onClick={handleClick}>
+    <div className="orange-fav">
       <svg
         width="59"
         height="63"
         viewBox="0 0 59 63"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        className="orange"
+        onClick={handleClick}
       >
         <defs>
           <clipPath id="fillClip">
@@ -154,6 +202,7 @@ function App() {
           className="mouth"
         />
       </svg>
+      <span className="orange-count">{count}</span>
     </div>
   );
 }
