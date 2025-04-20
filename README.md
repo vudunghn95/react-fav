@@ -37,8 +37,8 @@ yarn add react-fav
 ## 🚀 Usage
 
 ```jsx
-import { Orange } from 'react-fav';
-import 'react-fav/dist/react-fav.css';
+import { Orange } from "react-fav";
+import "react-fav/dist/react-fav.css";
 
 export default function App() {
   return <Orange />;
@@ -54,17 +54,15 @@ export default function App() {
 - Favorite count is fetched from `/api/favorites/[domain]` (see below).
 - No props required. Just drop in `<Orange />`.
 
-
 ---
 
 ## 📄 License
 
-MIT License © 2024 Dzung Vu
+MIT License © 2025 Dzung Vu
 
 ---
 
 ## 🙏 Credits
+
 - [GSAP](https://greensock.com/gsap/) for animation
 - [Upstash Redis](https://upstash.com/) for backend example
-
-
