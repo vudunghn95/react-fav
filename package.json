@@ -1,6 +1,6 @@
 {
   "name": "react-fav",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": false,
   "type": "module",
   "description": "A cute animated favorite button for React 🍊",
