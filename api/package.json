@@ -2,7 +2,7 @@
   "name": "react-fav",
   "version": "1.0.5",
   "private": false,
-  "type": "module",
+  "type": "commonjs",
   "description": "A cute animated favorite button for React 🍊",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
