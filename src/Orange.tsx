@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
-import "./App.css";
+import "./Orange.css";
 
 const debounce = (fn: () => void, delay: number) => {
   let timer: NodeJS.Timeout;

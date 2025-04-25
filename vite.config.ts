@@ -9,12 +9,20 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"), // ← here
       name: "ReactFav",
-      fileName: (format) => `index.${format}.js`,
-      formats: ["es", "umd"],
+      formats: ["es"],
+      fileName: () => "index.js" // or "index.es.js"
     },
     rollupOptions: {
       external: ["react", "react-dom", "gsap"],
       output: {
+        assetFileNames: (assetInfo) => {
+          // Only rename CSS assets
+          if (assetInfo.name && assetInfo.name.endsWith(".css")) {
+            return "Orange.css";
+          }
+          // Default for other assets
+          return "[name][extname]";
+        },
         globals: {
           react: "React",
           "react-dom": "ReactDOM",

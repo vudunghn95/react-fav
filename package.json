@@ -4,15 +4,22 @@
   "private": false,
   "type": "module",
   "description": "A cute animated favorite button for React 🍊",
-  "main": "dist/index.umd.js",
-  "module": "dist/index.es.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "keywords": [
+    "react",
+    "favorite",
+    "like",
+    "heart",
+    "button"
+  ],
+  "license":"MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc --project tsconfig.app.json",
+    "build": "vite build && tsc --project tsconfig.build.json",
     "preview": "vite preview",
     "lint": "eslint ."
   },
