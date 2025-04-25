@@ -38,7 +38,7 @@ yarn add react-fav
 
 ```jsx
 import { Orange } from "react-fav";
-import "react-fav/dist/react-fav.css";
+import "react-fav/dist/Orange.css";
 
 export default function App() {
   return <Orange />;

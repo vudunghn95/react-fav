@@ -1,6 +1,6 @@
 {
   "name": "react-fav",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": false,
   "type": "module",
   "description": "A cute animated favorite button for React 🍊",
@@ -16,7 +16,7 @@
     "heart",
     "button"
   ],
-  "license":"MIT",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc --project tsconfig.build.json",
